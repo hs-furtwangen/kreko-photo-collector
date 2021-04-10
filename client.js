@@ -111,8 +111,6 @@ var client;
         const imageVideoHeight = Math.floor(imageHeight * scaleVideoToImage + 0.5);
         videoCutX = Math.max(0, Math.floor(0.5 * (videoWidth - imageVideoWidth) + 0.5));
         videoCutY = Math.max(0, Math.floor(0.5 * (videoHeight - imageVideoHeight) + 0.5));
-        // show live video
-        resetVideo();
     }
     // listen to connection open
     // socket.addEventListener("open", (event) => {
