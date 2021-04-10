@@ -1,6 +1,6 @@
 namespace display {
-  const socket: WebSocket = new WebSocket("ws://localhost:8000/");
-  //const socket: WebSocket = new WebSocket("wss://counter-pads.herokuapp.com/");
+  // const socket: WebSocket = new WebSocket("ws://localhost:8000/");
+  const socket: WebSocket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
 
   const images: HTMLImageElement[] = [];
   let counter: number = 0;

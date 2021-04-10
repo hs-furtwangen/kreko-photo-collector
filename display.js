@@ -1,8 +1,8 @@
 "use strict";
 var display;
 (function (display) {
-    const socket = new WebSocket("ws://localhost:8000/");
-    //const socket: WebSocket = new WebSocket("wss://counter-pads.herokuapp.com/");
+    // const socket: WebSocket = new WebSocket("ws://localhost:8000/");
+    const socket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
     const images = [];
     let counter = 0;
     socket.binaryType = "blob";

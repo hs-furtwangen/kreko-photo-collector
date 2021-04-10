@@ -1,8 +1,8 @@
 "use strict";
 var client;
 (function (client) {
-    const socket = new WebSocket("ws://localhost:8000/");
-    // const socket: WebSocket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
+    // const socket: WebSocket = new WebSocket("ws://localhost:8000/");
+    const socket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
     const imageWidth = 400;
     const imageHeight = 600;
     const video = document.getElementById("video");

@@ -1,6 +1,6 @@
 namespace client {
-  const socket: WebSocket = new WebSocket("ws://localhost:8000/");
-  // const socket: WebSocket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
+  // const socket: WebSocket = new WebSocket("ws://localhost:8000/");
+  const socket: WebSocket = new WebSocket("wss://kreko-photo-collector.herokuapp.com/");
 
   const imageWidth: number = 400;
   const imageHeight: number = 600;
@@ -31,7 +31,6 @@ namespace client {
   startScreen.start().then(() => {
     video.play().then(() => {
       adaptElements();
-
       window.addEventListener("resize", adaptElements);
       buttonDiv.addEventListener("click", takeSnapshot);
     });
