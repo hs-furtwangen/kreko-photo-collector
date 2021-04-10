@@ -13,17 +13,24 @@ var display;
     });
     // listen to message from server
     socket.addEventListener("message", (event) => {
-        const url = URL.createObjectURL(event.data);
-        let image = images[counter];
-        if (image === undefined) {
-            image = document.createElement("img");
-            image.style.width = "12%";
-            image.style.margin = "0.25%";
-            imageContainer.appendChild(image);
-            images[counter] = image;
+        if (event.data === "clear") {
+            imageContainer.innerHTML = "";
+            images.length = 0;
+            counter = 0;
         }
-        image.setAttribute("src", url);
-        counter = (counter + 1) % 64;
+        else {
+            const url = URL.createObjectURL(event.data);
+            let image = images[counter];
+            if (image === undefined) {
+                image = document.createElement("img");
+                image.style.width = "12%";
+                image.style.margin = "0.25%";
+                imageContainer.appendChild(image);
+                images[counter] = image;
+            }
+            image.setAttribute("src", url);
+            counter = (counter + 1) % 64;
+        }
     });
 })(display || (display = {}));
 //# sourceMappingURL=display.js.map

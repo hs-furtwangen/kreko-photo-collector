@@ -16,18 +16,24 @@ namespace display {
 
   // listen to message from server
   socket.addEventListener("message", (event) => {
-    const url: string = URL.createObjectURL(event.data);
-    let image: HTMLImageElement = images[counter];
+    if (event.data === "clear") {
+      imageContainer.innerHTML = "";
+      images.length = 0;
+      counter = 0;
+    } else {
+      const url: string = URL.createObjectURL(event.data);
+      let image: HTMLImageElement = images[counter];
 
-    if (image === undefined) {
-      image = <HTMLImageElement>document.createElement("img");
-      image.style.width = "12%";
-      image.style.margin = "0.25%";
-      imageContainer.appendChild(image);
-      images[counter] = image;
+      if (image === undefined) {
+        image = <HTMLImageElement>document.createElement("img");
+        image.style.width = "12%";
+        image.style.margin = "0.25%";
+        imageContainer.appendChild(image);
+        images[counter] = image;
+      }
+
+      image.setAttribute("src", url);
+      counter = (counter + 1) % 64;
     }
-
-    image.setAttribute("src", url);
-    counter = (counter + 1) % 64;
   });
 }

@@ -15,7 +15,14 @@ server.on("connection", (socket) => {
   clientSockets.add(socket);
 
   socket.on("message", (message) => {
-    if (message === "display") {
+    if (message === "clear") {
+      counter = 0;
+      buffers.length = 0;
+
+      for (let socket of displaySockets) {
+        socket.send("clear");
+      }
+    } else if (message === "display") {
       for (let buffer of buffers) {
         socket.send(buffer);
       }
