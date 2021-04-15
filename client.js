@@ -36,19 +36,25 @@ var client;
     // take a snapshot by copying video into image via (hidden) canvas
     function takeSnapshot() {
         const context = canvas.getContext("2d");
+        // copy video image into canvas
         context.drawImage(video, videoCutX, videoCutY, videoWidth - 2 * videoCutX, videoHeight - 2 * videoCutY, 0, 0, imageWidth, imageHeight);
+        // generate data URL for local image display
         const srcDataUrl = canvas.toDataURL("image/png");
         image.setAttribute("src", srcDataUrl);
+        // convert canvas image to jpeg blob
         canvas.toBlob((blob) => socket.send(blob), "image/jpeg");
         // hide video and show image
         video.classList.add("hide");
         buttonDiv.classList.add("hide");
         image.classList.remove("hide");
+        // make image flash when taking photo
         image.style.filter = "brightness(2)";
         setTimeout(() => image.style.filter = "none", 120);
+        // start count down blocking interaction
         countDown = 10;
         doCountDown();
     }
+    // generate count down with recursive calls to setTimeout
     function doCountDown() {
         if (countDown > 0) {
             countDownDiv.innerHTML = countDown.toString();
@@ -103,7 +109,7 @@ var client;
         video.style.height = `${videoScreenHeight}px`;
         video.style.left = `${videoScreenOffsetX}px`;
         video.style.bottom = `${videoScreenOffsetY}px`;
-        // set video cutting ti image
+        // set video cutting to image size
         const scaleImageWidthToVideo = videoWidth / imageWidth;
         const scaleImageHeightToVideo = videoHeight / imageHeight;
         const scaleVideoToImage = Math.min(scaleImageWidthToVideo, scaleImageHeightToVideo);
